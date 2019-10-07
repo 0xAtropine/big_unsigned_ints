@@ -52,7 +52,7 @@ On Transmute:
 */
 
 //#![no_std]
-use core::mem::{transmute};
+use core::mem::transmute;
 use core::fmt;
 
 //---Constants---//
@@ -145,6 +145,44 @@ impl U384 {
         }
     }
 }
+impl From<[u8;48]> for U384 {
+    fn from(byte_array: [u8;48]) -> Self {
+        unsafe {
+            return transmute::<[u8;48], U384>(byte_array);
+        }
+    }
+}
+impl Into<[u8;48]> for U384 {
+    fn into(self) -> [u8;48] {
+        let U384(array) = self;
+        let mut output: [u8;48] = [0;48];
+        let mut counter: usize = 0;
+
+        for &x in array.iter() {
+            let bytes = x.to_be_bytes();
+                for &byte in bytes.iter() {
+                    output[counter] = byte;
+                    counter += 1;
+                }
+        }
+        return output;
+    }
+}
+impl fmt::Display for U384 {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        let x = self.0;
+        
+        // i for index and max - 1 so we can return the final write!
+        let mut i: usize = 0;
+        let max = x.len() - 1;
+        write!(f, "{:24X}", x[i]);
+        while i < max {
+            i += 1;
+            write!(f, "{:24X} ", x[i]);
+        }
+        write!(f, "{:24X}", x[i])
+    }
+}
 
 impl U512 {
     // Function That Sets 8 Array Elements to 0
@@ -165,7 +203,44 @@ impl U512 {
         }
     }
 }
+impl From<[u8;64]> for U512 {
+    fn from(byte_array: [u8;64]) -> Self {
+        unsafe {
+            return transmute::<[u8;64], U512>(byte_array);
+        }
+    }
+}
+impl Into<[u8;64]> for U512 {
+    fn into(self) -> [u8;64] {
+        let U512(array) = self;
+        let mut output: [u8;64] = [0;64];
+        let mut counter: usize = 0;
 
+        for &x in array.iter() {
+            let bytes = x.to_be_bytes();
+                for &byte in bytes.iter() {
+                    output[counter] = byte;
+                    counter += 1;
+                }
+        }
+        return output;
+    }
+}
+impl fmt::Display for U512 {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        let x = self.0;
+        
+        // i for index and max - 1 so we can return the final write!
+        let mut i: usize = 0;
+        let max = x.len() - 1;
+        write!(f, "{:32X}", x[i]);
+        while i < max {
+            i += 1;
+            write!(f, "{:32X} ", x[i]);
+        }
+        write!(f, "{:32X}", x[i])
+    }
+}
 impl U1024 {
     // Function That Sets 16 Array Elements to 0
     pub fn new () -> U1024 {
@@ -185,7 +260,44 @@ impl U1024 {
         }
     }
 }
+impl From<[u8;128]> for U1024 {
+    fn from(byte_array: [u8;128]) -> Self {
+        unsafe {
+            return transmute::<[u8;128], U1024>(byte_array);
+        }
+    }
+}
+impl Into<[u8;128]> for U1024 {
+    fn into(self) -> [u8;128] {
+        let U1024(array) = self;
+        let mut output: [u8;128] = [0;128];
+        let mut counter: usize = 0;
 
+        for &x in array.iter() {
+            let bytes = x.to_be_bytes();
+                for &byte in bytes.iter() {
+                    output[counter] = byte;
+                    counter += 1;
+                }
+        }
+        return output;
+    }
+}
+impl fmt::Display for U1024 {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        let x = self.0;
+        
+        // i for index and max - 1 so we can return the final write!
+        let mut i: usize = 0;
+        let max = x.len() - 1;
+        write!(f, "{:64X}", x[i]);
+        while i < max {
+            i += 1;
+            write!(f, "{:64X} ", x[i]);
+        }
+        write!(f, "{:64X}", x[i])
+    }
+}
 impl U2048 {
     // Function That Sets 32 Array Elements to 0
     pub fn new () -> U2048 {
@@ -205,17 +317,51 @@ impl U2048 {
         }
     }
 }
+impl From<[u8;256]> for U2048 {
+    fn from(byte_array: [u8;256]) -> Self {
+        unsafe {
+            return transmute::<[u8;256], U2048>(byte_array);
+        }
+    }
+}
+impl Into<[u8;256]> for U2048 {
+    fn into(self) -> [u8;256] {
+        let U2048(array) = self;
+        let mut output: [u8;256] = [0;256];
+        let mut counter: usize = 0;
 
-pub fn main (){
-
-    let x = U256::from([1u8;32]);
-    println!("{}",&x);
-    //let y: [u8;32] = x.into();
-    //println!("{:?}",y)
-
-    //let y: [u8;32] = U256::into(x);
+        for &x in array.iter() {
+            let bytes = x.to_be_bytes();
+                for &byte in bytes.iter() {
+                    output[counter] = byte;
+                    counter += 1;
+                }
+        }
+        return output;
+    }
+}
+impl fmt::Display for U2048 {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        let x = self.0;
+        
+        // i for index and max - 1 so we can return the final write!
+        let mut i: usize = 0;
+        let max = x.len() - 1;
+        write!(f, "{:128X}", x[i]);
+        while i < max {
+            i += 1;
+            write!(f, "{:128X} ", x[i]);
+        }
+        write!(f, "{:128X}", x[i])
+    }
 }
 
+pub fn main (){
+    let x = U384::from([49u8;48]);
+    println!("{}",&x);
+    let y: [u8;32] = U256::into(U256([598u64;4]));
+    println!("{:?}",&y)
+}
 /*
 #[cfg(test)]
 mod tests {
