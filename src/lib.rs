@@ -51,7 +51,7 @@ On Transmute:
     Transmute will check the length of the two values but NOT the type.
 */
 
-//#![no_std]
+#![no_std]
 use core::mem::transmute;
 use core::fmt;
 
@@ -356,12 +356,6 @@ impl fmt::Display for U2048 {
     }
 }
 
-pub fn main (){
-    let x = U384::from([49u8;48]);
-    println!("{}",&x);
-    let y: [u8;32] = U256::into(U256([598u64;4]));
-    println!("{:?}",&y)
-}
 /*
 #[cfg(test)]
 mod tests {
