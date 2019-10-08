@@ -6,7 +6,7 @@ edition = "2018"
 description = "A Crate For Big Unsigned Integers ranging from U256 to U2048 using u64 arrays all under a fixed-size of 32"
 repository = "https://github.com/0xSilene/big_unsigned_ints/tree/master"
 keywords = ["BigInts", "Type","u8","conversion","bytes"]
-license = "MIT License"
+license = "APACHE LICENSE, VERSION 2.0"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
