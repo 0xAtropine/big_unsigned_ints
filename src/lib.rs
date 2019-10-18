@@ -55,22 +55,20 @@ On Transmute:
 use core::mem::transmute;
 use core::fmt;
 
-//---Constants---//
+#[derive(Debug, Clone, Copy)]
+pub struct U256 (pub[u64;4]); // 256 bits (32 bytes)
 
-#[derive(Debug)]
-pub struct U256 ([u64;4]); // 256 bits (32 bytes)
+#[derive(Debug, Clone, Copy)]
+pub struct U384 (pub[u64;6]); // 384 bits (48 bytes)
 
-#[derive(Debug)]
-pub struct U384 ([u64;6]); // 384 bits (48 bytes)
+#[derive(Debug, Clone, Copy)]
+pub struct U512 (pub [u64;8]); // 512 bits (64 bytes)
 
-#[derive(Debug)]
-pub struct U512 ([u64;8]); // 512 bits (64 bytes)
+#[derive(Debug, Clone, Copy)]
+pub struct U1024 (pub [u64;16]); // 1024 bits (128 bytes)
 
-#[derive(Debug)]
-pub struct U1024 ([u64;16]); // 1024 bits (128 bytes)
-
-#[derive(Debug)]
-pub struct U2048 ([u64;32]); // 2048 bits (256 bytes)
+#[derive(Debug, Clone, Copy)]
+pub struct U2048 (pub [u64;32]); // 2048 bits (256 bytes)
 
 impl U256 {
     // If Needed, a Simple Method To Initialize an empty U256 struct, which its member can be accessed like so U256::init().0
@@ -117,12 +115,12 @@ impl fmt::Display for U256 {
         // i for index and max - 1 so we can return the final write!
         let mut i: usize = 0;
         let max = x.len() - 1;
-        write!(f, "{:16X}", x[i]);
+        //write!(f, "{:016X}", x[i]);
         while i < max {
             i += 1;
-            write!(f, "{:16X} ", x[i]);
+            write!(f, "0x{:X} ", x[i]);
         }
-        write!(f, "{:16X}", x[i])
+        write!(f, "0x{:X}", x[i])
     }
 }
 
@@ -175,12 +173,12 @@ impl fmt::Display for U384 {
         // i for index and max - 1 so we can return the final write!
         let mut i: usize = 0;
         let max = x.len() - 1;
-        write!(f, "{:24X}", x[i]);
+        //write!(f, "{:016X}", x[i]);
         while i < max {
             i += 1;
-            write!(f, "{:24X} ", x[i]);
+            write!(f, "0x{:X} ", x[i]);
         }
-        write!(f, "{:24X}", x[i])
+        write!(f, "0x{:X}", x[i])
     }
 }
 
@@ -233,12 +231,12 @@ impl fmt::Display for U512 {
         // i for index and max - 1 so we can return the final write!
         let mut i: usize = 0;
         let max = x.len() - 1;
-        write!(f, "{:32X}", x[i]);
+        //write!(f, "{:016X}", x[i]);
         while i < max {
             i += 1;
-            write!(f, "{:32X} ", x[i]);
+            write!(f, "0x{:X} ", x[i]);
         }
-        write!(f, "{:32X}", x[i])
+        write!(f, "0x{:X}", x[i])
     }
 }
 impl U1024 {
@@ -290,12 +288,12 @@ impl fmt::Display for U1024 {
         // i for index and max - 1 so we can return the final write!
         let mut i: usize = 0;
         let max = x.len() - 1;
-        write!(f, "{:64X}", x[i]);
+        //write!(f, "{:016X}", x[i]);
         while i < max {
             i += 1;
-            write!(f, "{:64X} ", x[i]);
+            write!(f, "0x{:X} ", x[i]);
         }
-        write!(f, "{:64X}", x[i])
+        write!(f, "0x{:X}", x[i])
     }
 }
 impl U2048 {
@@ -347,12 +345,12 @@ impl fmt::Display for U2048 {
         // i for index and max - 1 so we can return the final write!
         let mut i: usize = 0;
         let max = x.len() - 1;
-        write!(f, "{:128X}", x[i]);
+        //write!(f, "{:016X}", x[i]);
         while i < max {
             i += 1;
-            write!(f, "{:128X} ", x[i]);
+            write!(f, "0x{:X} ", x[i]);
         }
-        write!(f, "{:128X}", x[i])
+        write!(f, "0x{:X}", x[i])
     }
 }
 
