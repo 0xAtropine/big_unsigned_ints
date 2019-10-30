@@ -1,5 +1,7 @@
 # Big_Unsigned_Ints
 
+![Crates.io](https://img.shields.io/crates/v/big_unsigned_ints) [![Build Status](https://travis-ci.org/0xSilene/big_unsigned_ints.svg?branch=master)](https://travis-ci.org/0xSilene/big_unsigned_ints)
+
 ## Description
 
 **Big_Unsigned_Ints** is a crate for Rust that allows you to use large unsigned integers ranging from U256 through U2048. These are implemented using fixed-sized arrays and converts from u8 to u64 types. It also allows you to convert back from u64 to an array of u8s without using unsafe code.
@@ -51,15 +53,15 @@ fn bytes_to_big (){
 
 ## Available Types
 
-* U256 ([u64;4]) | [u8;32]
+* U256 `[u64;4]` | `[u8;32]`
 
-* U384 ([u64;6]) | [u8;48]
+* U384 `[u64;6]` | `[u8;48]`
 
-* U512 ([u64;8]) | [u8;64]
+* U512 `[u64;8]` | `[u8;64]`
 
-* U1024 ([u64;16]) | [u8;128]
+* U1024 `[u64;16]` | `[u8;128]`
 
-* U2048 ([u64;32]) | [u8;256]
+* U2048 `[u64;32]` | `[u8;256]`
 
 ## License
 
