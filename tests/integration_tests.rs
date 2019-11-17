@@ -1,12 +1,12 @@
 extern crate big_unsigned_ints as bui;
 
 #[test]
-fn instantiate_U256(){
+fn instantiate_u256(){
     let x = bui::U256([86557u64;4]);
     println!("{}",x);
 }
 #[test]
-fn instantiate_U384(){
+fn instantiate_u384(){
     let x = bui::U384([393283u64;6]);
     println!("{}",x)
 }

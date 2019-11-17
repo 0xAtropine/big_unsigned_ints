@@ -33,6 +33,8 @@ fn bytes_to_u256 (){
     let x = [243u8;32];
     // Conversion Occurs From Bytes of Array To The Type
     let y = big_unsigned_ints::U256::from(x);
+    // Prints as Hexadecimal
+    println!("{}",y)
 }
 ```
 

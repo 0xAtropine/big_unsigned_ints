@@ -75,9 +75,11 @@ impl U256 {
     pub fn new () -> U256 {
         return U256([0u64;4]);
     }
+    #[deprecated]
     pub fn from_bytes (bytes: [u8;32]) -> [u64;4] {
         return U256::from(bytes).0;
     }
+    #[deprecated]
     pub fn to_bytes (largebytes: [u64;4]) -> [u8;32] {
         let output: [u8;32] = U256(largebytes).into();
         return output;
@@ -127,9 +129,11 @@ impl U384 {
     pub fn new () -> U384 {
         return U384([0u64;6])
     }
+    #[deprecated]
     pub fn from_bytes (bytes: [u8;48]) -> [u64;6] {
         return U384::from(bytes).0;
     }
+    #[deprecated]
     pub fn to_bytes (largebytes: [u64;6]) -> [u8;48] {
         return U384(largebytes).into()
     }
@@ -178,10 +182,11 @@ impl U512 {
     pub fn new () -> U512 {
         return U512([0u64;8])
     }
-    // Function That Takes an Array of 64 u8s as input and outputs the tulpe struct U512, or [u64;8]
+    #[deprecated]
     pub fn from_bytes (bytes: [u8;64]) -> [u64;8] {
         return U512::from(bytes).0;
     }
+    #[deprecated]
     pub fn to_bytes (largebytes: [u64;8]) -> [u8;64] {
         return U512(largebytes).into()
     }
@@ -228,9 +233,11 @@ impl U1024 {
     pub fn new () -> U1024 {
         return U1024([0u64;16])
     }
+    #[deprecated]
     pub fn from_bytes (bytes: [u8;128]) -> [u64;16] {
         return U1024::from(bytes).0;
     }
+    #[deprecated]
     pub fn to_bytes (largebytes: [u64;16]) -> [u8;128] {
         return U1024(largebytes).into()
     }
@@ -278,9 +285,11 @@ impl U2048 {
     pub fn new () -> U2048 {
         return U2048([0u64;32])
     }
+    #[deprecated]
     pub fn from_bytes (bytes: [u8;256]) -> [u64;32] {
         return U2048::from(bytes).0;
     }
+    #[deprecated]
     pub fn to_bytes (largebytes: [u64;32]) -> [u8;256] {
         return U2048(largebytes).into()
     }
