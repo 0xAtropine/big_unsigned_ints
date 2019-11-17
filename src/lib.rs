@@ -55,32 +55,30 @@ On Transmute:
 use core::mem::transmute;
 use core::fmt;
 
-#[derive(Debug, Clone, Copy)]
+#[derive(Debug, Clone, Copy, Hash, PartialEq, PartialOrd, Eq, Ord)]
 pub struct U256 (pub[u64;4]); // 256 bits (32 bytes)
 
-#[derive(Debug, Clone, Copy)]
+#[derive(Debug, Clone, Copy, Hash, PartialEq, PartialOrd, Eq, Ord)]
 pub struct U384 (pub[u64;6]); // 384 bits (48 bytes)
 
-#[derive(Debug, Clone, Copy)]
-pub struct U512 (pub [u64;8]); // 512 bits (64 bytes)
+#[derive(Debug, Clone, Copy, Hash, PartialEq, PartialOrd, Eq, Ord)]
+pub struct U512 (pub[u64;8]); // 512 bits (64 bytes)
 
-#[derive(Debug, Clone, Copy)]
-pub struct U1024 (pub [u64;16]); // 1024 bits (128 bytes)
+#[derive(Debug, Clone, Copy, Hash, PartialEq, PartialOrd, Eq, Ord)]
+pub struct U1024 (pub[u64;16]); // 1024 bits (128 bytes)
 
-#[derive(Debug, Clone, Copy)]
-pub struct U2048 (pub [u64;32]); // 2048 bits (256 bytes)
+#[derive(Debug, Clone, Copy, Hash, PartialEq, PartialOrd, Eq, Ord)]
+pub struct U2048 (pub[u64;32]); // 2048 bits (256 bytes)
 
 impl U256 {
-    // If Needed, a Simple Method To Initialize an empty U256 struct, which its member can be accessed like so U256::init().0
-    pub fn init () -> U256 {
+    /// If Needed, a Simple Method To Initialize an empty U256 struct, which its member can be accessed like so U256::init().0
+    pub fn new () -> U256 {
         return U256([0u64;4]);
     }
-    // UNSAFE | Wrapper For Main From Function For Easier Usage / Synatx
-    pub fn convert_from_bytes (bytes: [u8;32]) -> [u64;4] {
+    pub fn from_bytes (bytes: [u8;32]) -> [u64;4] {
         return U256::from(bytes).0;
     }
-    // SAFE | Wrapper For Main Into Function For Easier Usage / Synatx
-    pub fn convert_to_bytes (largebytes: [u64;4]) -> [u8;32] {
+    pub fn to_bytes (largebytes: [u64;4]) -> [u8;32] {
         let output: [u8;32] = U256(largebytes).into();
         return output;
     }
@@ -127,20 +125,13 @@ impl fmt::Display for U256 {
 impl U384 {
     // Function That Sets 6 Array Elements to 0u64
     pub fn new () -> U384 {
-        let x = U384([0u64;6]);
-        return x;
+        return U384([0u64;6])
     }
-    // Function That Takes an Array of 48 u8s as input and outputs the tulpe struct U384, or [u64;6]
-    pub fn from_u8_byte_array_to_u384 (input: [u8;48]) -> U384 {
-        if input.len() == 48 {
-            unsafe {
-                // Requires the type (u8) and an array of 48 elements and is required to return [u64;6]
-                return transmute::<[u8;48], U384>(input);
-            }
-        }
-        else {
-            panic!("Byte Array Not Size of 48 for U384");
-        }
+    pub fn from_bytes (bytes: [u8;48]) -> [u64;6] {
+        return U384::from(bytes).0;
+    }
+    pub fn to_bytes (largebytes: [u64;6]) -> [u8;48] {
+        return U384(largebytes).into()
     }
 }
 impl From<[u8;48]> for U384 {
@@ -185,20 +176,14 @@ impl fmt::Display for U384 {
 impl U512 {
     // Function That Sets 8 Array Elements to 0
     pub fn new () -> U512 {
-        let x = U512([0u64;8]);
-        return x;
+        return U512([0u64;8])
     }
     // Function That Takes an Array of 64 u8s as input and outputs the tulpe struct U512, or [u64;8]
-    pub fn from_u8_byte_array_to_u512 (input: [u8;64]) -> U512 {
-        if input.len() == 64 {
-            unsafe {
-                // Requires the type (u8) and an array of 68 elements and is required to return [u64;8]
-                return transmute::<[u8;64], U512>(input);
-            }
-        }
-        else {
-            panic!("Byte Array Not Size of 64 for U512");
-        }
+    pub fn from_bytes (bytes: [u8;64]) -> [u64;8] {
+        return U512::from(bytes).0;
+    }
+    pub fn to_bytes (largebytes: [u64;8]) -> [u8;64] {
+        return U512(largebytes).into()
     }
 }
 impl From<[u8;64]> for U512 {
@@ -240,22 +225,14 @@ impl fmt::Display for U512 {
     }
 }
 impl U1024 {
-    // Function That Sets 16 Array Elements to 0
     pub fn new () -> U1024 {
-        let x = U1024([0u64;16]);
-        return x;
+        return U1024([0u64;16])
     }
-    // Function That Takes an Array of 128 u8s as input and outputs the tulpe struct U1024, or [u64;16]
-    pub fn from_u8_byte_array_to_u1024 (input: [u8;128]) -> U1024 {
-        if input.len() == 128 {
-            unsafe {
-                // Requires the type (u8) and an array of 128 elements and is required to return [u64;16]
-                return transmute::<[u8;128], U1024>(input);
-            }
-        }
-        else {
-            panic!("Byte Array Not Size of 128 for U1024");
-        }
+    pub fn from_bytes (bytes: [u8;128]) -> [u64;16] {
+        return U1024::from(bytes).0;
+    }
+    pub fn to_bytes (largebytes: [u64;16]) -> [u8;128] {
+        return U1024(largebytes).into()
     }
 }
 impl From<[u8;128]> for U1024 {
@@ -299,20 +276,13 @@ impl fmt::Display for U1024 {
 impl U2048 {
     // Function That Sets 32 Array Elements to 0
     pub fn new () -> U2048 {
-        let x = U2048([0u64;32]);
-        return x;
+        return U2048([0u64;32])
     }
-    // Function That Takes an Array of 256 u8s as input and outputs the tulpe struct U1024, or [u64;32]
-    pub fn from_u8_byte_array_to_u2048 (input: [u8;256]) -> U2048 {
-        if input.len() == 256 {
-            unsafe {
-                // Requires the type (u8) and an array of 256 elements and is required to return [u64;32]
-                return transmute::<[u8;256], U2048>(input);
-            }
-        }
-        else {
-            panic!("Byte Array Not Size of 256 for U2048");
-        }
+    pub fn from_bytes (bytes: [u8;256]) -> [u64;32] {
+        return U2048::from(bytes).0;
+    }
+    pub fn to_bytes (largebytes: [u64;32]) -> [u8;256] {
+        return U2048(largebytes).into()
     }
 }
 impl From<[u8;256]> for U2048 {
