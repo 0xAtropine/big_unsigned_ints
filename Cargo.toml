@@ -1,6 +1,6 @@
 [package]
 name = "big_unsigned_ints"
-version = "0.1.3"
+version = "0.1.4"
 authors = ["0xSilene <51803887+0xSilene@users.noreply.github.com>"]
 edition = "2018"
 description = "A Crate For Big Unsigned Integers ranging from U256 to U2048 using u64 arrays all under a fixed-size of 32"
