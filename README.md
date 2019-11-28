@@ -26,13 +26,16 @@ Please view the tests folder for integration testing and how you can use the lib
 
 ## Standard Documentation On Usage
 
-### Converting Array of Bytes To U256 Type (Quick Version)
+### Converting Array of Bytes To U256 Type
 
 ```rust
-fn bytes_to_u256 (){
+fn example_bytes (){
+    // 32-fixed sized array of bytes
     let x = [243u8;32];
+
     // Conversion Occurs From Bytes of Array To The Type
     let y = big_unsigned_ints::U256::from(x);
+
     // Prints as Hexadecimal
     println!("{}",y)
 }
@@ -41,15 +44,15 @@ fn bytes_to_u256 (){
 ### Converting Array of Bytes To U256 Type Back To An Array Of Bytes
 
 ```rust
-fn bytes_to_big (){
+fn bytes_to_big_int (){
     // Create an array of 32x 243u8, or 256bits
     let x = [243u8;32];
+
     // Convert From the Array of Bytes Into a U256 Type ([u64;4])
     let y = big_unsigned_ints::U256::from(x);
-    // Convert Back Into An Array of Bytes
+
+    // Convert Back Into An Array of Bytes Specifying the Type For Bytes
     let b: [u8;32] = y.into();
-    // Prints Out The Statements
-    println!("{:?}",b)
 }
 ```
 
