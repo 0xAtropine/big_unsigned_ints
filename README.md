@@ -14,7 +14,7 @@ No functions should be used aside from the standard traits From and Into to conv
 
 Write the following inside your cargo.toml file under dependencies:
 
-`big_unsigned_ints = "0.1.2"`
+`big_unsigned_ints = "0.1.6"`
 
 Then, you can import it like so:
 
