@@ -1,6 +1,6 @@
 # Big_Unsigned_Ints
 
-![Crates.io](https://img.shields.io/crates/v/big_unsigned_ints) [![Build Status](https://travis-ci.org/0xSilene/big_unsigned_ints.svg?branch=master)](https://travis-ci.org/0xSilene/big_unsigned_ints)
+![Crates.io](https://img.shields.io/crates/v/big_unsigned_ints) [![Build Status](https://travis-ci.org/0xAtropine/big_unsigned_ints.svg?branch=master)](https://travis-ci.org/0xAtropine/big_unsigned_ints)
 
 ## Description
 
